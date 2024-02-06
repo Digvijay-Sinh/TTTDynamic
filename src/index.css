@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #202020;
+    color: white;
+}
+
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+td {
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+}
