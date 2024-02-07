@@ -10,8 +10,7 @@ function App() {
   const [gameState, setGameState] = useState("start");
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
-  const [noOfSquare, setNoOfSquare] = useState(0);
-  const [playerChoice, setPlayerChoice] = useState("");
+  const [noOfSquare, setNoOfSquare] = useState(3);
   const changeHandler = (event) => {
     setPlayer1(event.target.value);
   };
@@ -21,14 +20,16 @@ function App() {
   const handleNoOfSquare = (event) => {
     setNoOfSquare(event.target.value);
   };
-  const handlePlayerChoice = (event) => {
-    setPlayerChoice(event.target.value);
-  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setNoOfSquare(noOfSquare);
     setGameState("playing");
   };
+  const goToHome = () => {
+    setGameState("start");
+  };
+
   return (
     <>
       <div className="board flex justify-center flex-col items-center p-8">
@@ -53,15 +54,7 @@ function App() {
                 value={player2}
                 onChange={changeHandler1}
               />
-              <select
-                value={playerChoice}
-                onChange={handlePlayerChoice}
-                name=""
-                id=""
-              >
-                <option value="X">X</option>
-                <option value="O">O</option>
-              </select>
+
               <input
                 className="ml-5"
                 max={8}
@@ -70,6 +63,7 @@ function App() {
                 name="nn"
                 onChange={handleNoOfSquare}
                 id="nn"
+                value={noOfSquare}
               />
               <br />
               <button className="border-2 border-sky-500 mt-6" type="submit">
@@ -79,7 +73,14 @@ function App() {
           </div>
         )}
         {gameState === "playing" && (
-          <Board playerChoice={playerChoice} noOfSquare={noOfSquare} />
+          <>
+            <Board
+              player1={player1}
+              player2={player2}
+              noOfSquare={noOfSquare}
+              goToHome={goToHome}
+            />
+          </>
         )}
       </div>
     </>
